@@ -1,0 +1,50 @@
+{# src/BlogBundle/Resources/views/Comment/list.html.twig #}
+{% extends 'BlogBundle::layout.html.twig' %}
+{% block body %}
+    <p>
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </p>
+    <h2>Komentarze do rozpatrzenia:</h2>
+    {% if comments|length %}
+        {% for comment in comments %}
+
+            {% if (comment.approved == '0')|length %}
+                <div class="comment {{ cycle(['odd', 'even'], loop.index0) }} well" id="comment-{{ comment.id }}">
+                    <header>
+                        <p>
+                            <time datetime="{{ comment.created|date('') }}">
+                                 {{ comment.created|date('d/m/Y') }}</time>
+                            <span class="text-primary">{{ comment.author }}</span> skomentował:
+                        </p>
+                    </header>
+                    <div>
+                        <p>{{ comment.content[:50] ~ '...' }}</p>
+
+                    </div>
+                </div>
+
+                <span>
+                    {#{% include 'BlogBundle:Comments:edit.html.twig' with { 'comments': comments } %}#}
+                    <a href="{{ url('comments-edit', {'id': comment.id }) }}" title="" class="btn btn-success">Rozpatrz</a>
+                <a href="{{ url('comments-delete', {'id': comment.id }) }}" title="" class="btn btn-danger"> Usuń</a>
+            </span>
+
+                <hr>
+            {% else %}
+
+            {% endif %}
+
+        {% endfor %}
+
+
+    {% else %}
+        <p>Brak komentarzy do rozpatrzenia.</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{# src/BlogBundle/Resources/views/Comment/index.html.twig #}
+{#{% extends 'BlogBundle::layout.html.twig' %}#}
+{% block body %}
+    <p>
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </p>
+    {% for comment in comments %}
+        {% if (comment.approved == '1')|length %}
+            <article class="comment {{ cycle(['odd', 'even'], loop.index0) }}" id="comment-{{ comment.id }}">
+                <header>
+                    <p>
+                        <time datetime="{{ comment.created|date('c')|trans }}">{{ comment.created|date('l, F j, Y')|trans }}</time>
+                        <span class="text-primary">{{ comment.author }}</span> skomentował:
+                    </p>
+                </header>
+                <div class="well-sm">
+                <p class="text-info">{{ comment.content }}</p>
+                </div>
+            </article>
+
+            {% endif %}
+    {% endfor %}
+
+{% endblock %}

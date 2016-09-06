@@ -1,0 +1,7 @@
+Mail został wysłany przez: {{ enquiry.name }}.
+Data wysłania maila: {{ "now" | date("Y-m-d H:i") }}.
+
+Odpowiedz: {{ enquiry.email }}
+Temat: {{ enquiry.subject }}
+Treść:
+{{ enquiry.content }}

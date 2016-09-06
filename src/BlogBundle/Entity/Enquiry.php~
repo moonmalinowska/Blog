@@ -1,0 +1,109 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: monika
+ * Date: 06.05.16
+ * Time: 16:40
+ *
+ * Enquiry entity.
+ *
+ * @copyright (c) 2016 Monika Malinowska
+ * @link http://wierzba.wzks.uj.edu.pl/~12_malinowska/blog
+ */
+
+
+namespace BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * Class Enquiry.
+ *
+ * @package Model
+ * @author Monika Malinowska
+ *
+ * @ORM\Table(name="enquiries")
+ * @ORM\Entity
+ */
+class Enquiry
+{
+
+    /**
+     * @ORM\Column(
+     *     name="name",
+     *     type="string",
+     *     length=64,
+     *     nullable=false
+     * )
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(
+     *     name="email",
+     *     type="string",
+     *     length=128,
+     *     nullable=false
+     * )
+     */
+    protected $email;
+    /**
+     * @ORM\Column(
+     *     name="subject",
+     *     type="string",
+     *     length=128,
+     *     nullable=false
+     * )
+     */
+    protected $subject;
+
+    /**
+     * @ORM\Column(
+     *     name="content",
+     *     type="text",
+     *     nullable=false
+     * )
+     */
+    protected $content;
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
+}

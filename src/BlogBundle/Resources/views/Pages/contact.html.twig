@@ -1,0 +1,84 @@
+{# src/BlogBundle/Resources/views/Page/contact.html.twig #}
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block title %}Kontakt{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Napisz do mnie</h1>
+    </header>
+
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" class="blogger-notice" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+
+  {#  <form action="{{ path('BlogBundle_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.content) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>#}
+
+    <form class="form-horizontal" action="{{ path('BlogBundle_contact') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+
+            <div class="form-group">
+                <label for="approved" class="col-lg-12 control-label" ></label>
+                <div class="col-lg-8 ">
+                    {{ form_label(form.name, 'Imię/nick') }}
+
+                    {{ form_widget(form.name, { 'attr': {'class': 'form-control' }}) }}
+                </div>
+                </div>
+            <div class="form-group">
+                <label for="approved" class="col-lg-12 control-label" ></label>
+                <div class="col-lg-8 ">
+                    {{ form_label(form.email, 'E-mail') }}
+
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="approved" class="col-lg-12 control-label" ></label>
+                <div class="col-lg-8 ">
+                    {{ form_label(form.subject, 'Temat') }}
+
+                    {{ form_widget(form.subject, { 'attr': {'class': 'form-control' }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="approved" class="col-lg-12 control-label" ></label>
+                <div class="col-lg-8 ">
+                    {{ form_label(form.content, 'Treść') }}
+
+                    {{ form_widget(form.content, { 'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div>
+                <div class="col-lg-4">
+                    <input class="btn btn-success" type="submit" value="Wyślij" />
+                    <a class="btn btn-info" role="button" href="{{ url('posts') }}" title="">
+                        Wróc
+                    </a>
+                </div>
+            </div>
+
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
+{% endblock %}

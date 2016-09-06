@@ -1,0 +1,33 @@
+{# src/BlogBundle/Resources/views/Page/contact.html.twig #}
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block title %}Kontakt{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Napisz do mnie</h1>
+    </header>
+
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" class="blogger-notice" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <p>Lorem ipsum</p>
+
+   {# <form action="{{ path('BlogBundle_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.content) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>#}
+{% endblock %}

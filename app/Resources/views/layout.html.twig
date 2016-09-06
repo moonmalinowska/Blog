@@ -1,0 +1,12 @@
+{# src/BlogBundle/Resources/views/layout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('@BlogBundle/Resources/public/css/*') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block sidebar %}
+    <a href="{{ 'posts-add' }}" class="btn btn-primary btn-lg">Napisz posta</a>
+    <input class="btn btn-primary" type="submit" id="_submit" name="_submit"
+           value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+{% endblock %}

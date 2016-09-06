@@ -1,0 +1,13 @@
+{#<form action="{{ url('comments/add',{ 'post_id' : comment.post_id } ) }}" method="post" {{ form_enctype(form) }} class="blogger">
+    {{ form_widget(form) }}
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>#}
+
+<form method="post" {{ form_enctype(form) }} class="blogger">
+    {{ form_widget(form) }}
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>

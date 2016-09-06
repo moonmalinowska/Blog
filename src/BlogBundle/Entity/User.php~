@@ -1,0 +1,56 @@
+<?php
+
+namespace BlogBundle\Entity;
+
+use FOS\UserBundle\Entity\User as BaseUser;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_users")
+ */
+class User extends BaseUser
+{
+    /**
+     * Id
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer",
+     *     nullable=false,
+     *     options={
+     *         "unsigned" = true
+     *     }
+     * )
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var integer $id
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="users")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
+    protected $post;
+
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+        $this->roles = array('ROLE_USER');
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

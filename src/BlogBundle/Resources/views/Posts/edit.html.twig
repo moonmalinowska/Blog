@@ -1,0 +1,68 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+    {% form_theme form 'form/field.html.twig' %}
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <div class="form-group">
+                <label for="title" class="col-lg-2 control-label">
+                    {{ form_label(form.title) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Tytuł posta'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-lg-2 control-label">
+                    {{ form_label(form.content) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Treść posta'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="tags" class="col-lg-2 control-label">
+                    {{ form_label(form.tags) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.tags, {'attr': {'class': 'form-control', 'placeholder': 'Tagi'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="imageFile" class="col-lg-2 control-label">
+                    {{ form_label(form.imageFile) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.imageFile) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary', 'type': 'submit'}}) }}
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
+
+    <p>
+        <a class="btn btn-info" role="button" href="{{ url('posts') }}" title="">
+            Wróc
+        </a>
+
+    </p>
+{% endblock %}
+

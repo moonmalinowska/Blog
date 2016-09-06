@@ -1,0 +1,14 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+    <h2>Usuń użytkownika</h2>
+    <div>{{ form_errors(form) }}</div>
+    {{ form(form, {'method': 'POST'}) }}
+    <p>
+        <a href="{{ url('users-index') }}" title="">
+            Back
+        </a>
+
+    </p>
+{% endblock %}
+

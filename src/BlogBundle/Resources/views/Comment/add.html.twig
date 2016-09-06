@@ -1,0 +1,8 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block title %}Dodaj komentarz{% endblock%}
+
+{% block body %}
+    <h1>Dodaj komentarz do posta "{{ comment.post.title }}"</h1>
+    {% include 'BlogBundle:Comment:form.html.twig'  %}
+{% endblock %}

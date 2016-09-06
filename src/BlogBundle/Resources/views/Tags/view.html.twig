@@ -1,0 +1,59 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+
+{% block body %}
+    <div class="col-xs-12">
+    <p>
+    <span class="lead">Posty otagowane: <span class="label label-default ">{{ tag.name }}</span></span>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="label label-primary" href="{{ path('tags-edit', { 'id' : tag.id}) }}">Edytuj tag</a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="label label-danger" href="{{ path('tags-delete', { 'id' : tag.id }) }}">Usuń tag</a>
+        {% endif %}
+    </p>
+    </div>
+
+    {% if tag.posts|length %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr class="warning">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in tag.posts %}
+                <tr>
+                    <td><a class="lead" href="{{ url('posts_view', {'id':  row.id }) }}">{{ row.title }}</a></td>
+                    <td>
+
+                    </td>
+
+                    <td>
+                    </td>
+                    <td>
+                        <a class="btn btn-info lead" href="{{ url('posts_view', {'id':  row.id }) }}">Przeczytaj</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Żaden z postów nie został otagowany tym tagiem.
+    {% endif %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    <p>
+        <a class="btn btn-info" role="button" href="{{ url('tags') }}" title="">
+            Wróc
+        </a>
+    </p>
+{% endif %}
+
+{% endblock %}
+

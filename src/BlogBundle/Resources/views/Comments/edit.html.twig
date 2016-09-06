@@ -1,0 +1,38 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+{% block body %}
+    <h2>Zaakceptować komentarz?</h2>
+    <div class="well well-sm">
+       <span><span class="text-primary">Autor: </span>{{ comment.author }}</span><br>
+       <span class="text-primary"> Komentarz: </span>{{ comment.content }}
+    </div>
+    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+
+            <div class="form-group col-lg-12">
+                {#<label for="approved" class="col-lg-12 control-label" type="choice"></label>
+                <div class="col-lg-8 ">
+                    {{ form_label(form.approved) }}
+
+                    {{ form_widget(form.approved, { 'attr': {'class': '', 'id': 'radio' }}) }}
+                </div>#}
+                <div class="col-lg-6">
+                    </div>
+                <div class="col-lg-6">
+                    {{ form_widget(form.approved, { 'attr': {'class': 'btn btn-success', 'id': 'radio' }}) }}
+                {#{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }#}
+                    <a href="{{ url('comments-delete', {'id': comment.id }) }}" title="" class="btn btn-danger"> Usuń</a>
+                    <a class="btn btn-info" role="button" href="{{ url('comments-list') }}" title="">
+                    Wróc
+                </a>
+                </div>
+            </div>
+
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
+{% endblock %}
+

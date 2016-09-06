@@ -1,0 +1,89 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html xmlns:hx="http://purl.org/NET/hinclude">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8"/>
+    <title>{% block title %}Blog{% endblock %}</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="Resources/public/js/hinclude.js" type="text/javascript"></script>
+    <script src="{{ asset('js/hinclude.js') }}"></script>
+    <![endif]-->
+    {% block stylesheets %}
+        <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700&subset=latin,latin-ext' rel='stylesheet'
+              type='text/css'>
+        <link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet"/>
+        <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+
+<section id="wrapper">
+    <header id="header">
+        <div class="top">
+            {% block navigation %}
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ path('BlogBundle_homepage') }}">Home</a></li>
+                                <li><a href="{{ path('BlogBundle_about') }}">O nas</a></li>
+                                {% if is_granted('ROLE') %}
+                                <li><a href="{{ path('BlogBundle_contact') }}">Kontakt</a></li>
+                                {% endif %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><a href="{{ path('users-index') }}">Użytkownicy</a></li>
+                                        <li><a href="{{ path('comments-list') }}">Komentarze</a></li>
+                                    <li><a href="{{ path('tags') }}">Tagi</a></li>
+                                {% endif %}
+                                {% if is_granted('ROLE_MOD')  %}
+                                    <li><a href="{{ path('comments-list') }}">Komentarze</a></li>
+                                {% endif %}
+                                {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+                                    <li><a href="{{ path('fos_user_profile_show') }}">Twój profil</a></li>
+                                {% endif %}
+                                <li>
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+
+            {% endblock %}
+        </div>
+
+        <hgroup>
+            <h2>{% block blog_title %}<a href="{{ path('BlogBundle_homepage') }}">Blog</a>{% endblock %}</h2>
+            <h3>{% block blog_tagline %}<a href="{{ path('BlogBundle_homepage') }}">Lorem ipsum dolor sit
+                    amet</a>{% endblock %}</h3>
+        </hgroup>
+    </header>
+
+    <section class="main-col">
+        {% block body %}{% endblock %}
+    </section>
+    <aside class="sidebar">
+        {% block sidebar %}{% endblock %}
+    </aside>
+
+    <div id="footer">
+        {% block footer %}
+            © Copyright by Monika Malinowska
+        {% endblock %}
+    </div>
+</section>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,4 @@
+parameters:
+    blog.emails.contact_email: atrakcje.przemyslowe@gmail.com
+    images_directory: '%kernel.root_dir%/../web/assetic/images'
+    app.image_uploader: '%kernel.root_dir%/../web/assetic/images'

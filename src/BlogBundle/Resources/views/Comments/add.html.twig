@@ -1,0 +1,46 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block title %}Dodaj komentarz{% endblock %}
+
+{% block body %}
+    {#<h1>Dodaj komentarz do posta "{ comment.post.title }"</h1>
+    {% include 'BlogBundle:Comment:form.html.twig' %}#}
+
+
+   <h2>Dodaj komentarz</h2>
+
+    <form class="form-horizontal" method="post" >
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <div class="form-group">
+                <label for="author" class="col-lg-2 control-label">
+                    {{ form_label(form.author) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.author, {'attr': {'class': 'form-control', 'placeholder': 'Tutaj wpisz swój pseudonim'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-lg-2 control-label">
+                    {{ form_label(form.content) }}
+                </label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Tutaj wpisz treść komentarza'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary', 'type': 'submit'}}) }}
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+
+
+    </form>
+
+{% endblock %}
+

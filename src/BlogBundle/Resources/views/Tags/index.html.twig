@@ -1,0 +1,50 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+
+
+{% block body %}
+    <h2>{{ 'Używane tagi' }}</h2>
+
+    <p>
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </p>
+
+    <div class='well-sm'>
+
+        {% if tags|length > 0 %}
+            <div class="row-fluid">
+                {% for row in tags %}
+
+                    <span class="well well-sm">
+                            <a href="{{ url('tags-view', {'id': row.id }) }}" title="" class="label label-primary ">
+                                {{ row.name }}
+                            </a>
+            </span>
+
+
+                {% endfor %}
+
+            </div>
+        {% else %}
+            <div>
+                Nie odnaleziono tagów.
+            </div>
+        {% endif %}
+    </div>
+    <div class='well-sm'>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>
+            <a class="btn btn-info" role="button" href="{{ url('tags-add') }}" title="">
+                Dodaj nowy tag
+            </a>
+        </p>
+        </div>
+    {% endif %}
+
+{% endblock %}

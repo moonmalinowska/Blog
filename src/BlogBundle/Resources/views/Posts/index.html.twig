@@ -1,0 +1,81 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+
+{% block body %}
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert" xmlns="http://www.w3.org/1999/html">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            {% if 'fos_user_' in type %}
+            <div class="flash-message {{ type|replace({'fos_user_': ''}) }}">
+                <p>{{ flashMessage|trans({}, 'FOSUserBundle') }}</p>
+                </div>
+            {% else %}
+            <div class="flash-message {{ type }}">
+                <p>{{ flashMessage }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% for post in posts %}
+        <article class="blog" >
+                <div class="small">
+                    <em>
+                        <small>
+                            <time datetime="{{ post.created|date('Data:') }}">Utworzono: {{ post.created|date('d/m/Y') }}</time>
+                        </small>
+                    </em>
+                </div>
+                <header>
+                    <h2><a href="{{ path('BlogBundle_post_view', { 'id': post.id }) }}">{{ post.title }}</a></h2>
+                </header>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <span>
+                <a href="{{ url('posts-edit', {'id': post.id }) }}" title="" class="btn btn-warning btn-xs">Edytuj</a>
+                <a href="{{ url('posts-delete', {'id': post.id }) }}" title="" class="btn btn-danger btn-xs">Usuń</a>
+            </span>
+                {% endif %}
+                {#<img src='{{ asset("assetic/images/"~ post.image.imageName) }}'/>#}
+                {#<img src="{{ asset(['images/', post.image]|join) }}" alt="{{ blog.title }} image not found" class="large" />#}
+                <div class="snippet">
+                    <p>{{ post.content(200) }}</p>
+                    <p class="continue"><a href="{{ path('BlogBundle_post_view', { 'id': post.id }) }}">Kontynuuj
+                            czytanie...</a></p>
+                </div>
+
+                <footer class="meta">
+                    {% for comment in post.comments %}
+                        {% if comment.approved == '0' %}
+                            {#<p>Komentarze: {{ comments.count() }}</p>#}
+                            {#<p>Autor: <span class="highlight">{{post.author}}</span> at {{ post.created|date('h:iA') }}</p>#}
+                        {% endif %}
+                    {% endfor %}
+                    <span>Tagi:
+                        {% for tag in post.tags %}
+                            <a href="{{ url('tags-view', {'id': tag.id }) }}" title=""
+                               class="label label-primary">{{ tag.name }} </a>
+                        {% endfor %}
+                    </span>
+                </footer>
+            <br>
+            <hr>
+            <br>
+        </article>
+    {% else %}
+        <p>Brak wpisów na blogu</p>
+    {% endfor %}
+{#
+    <div class="count">
+        {{ pagination.getTotalItemCount }}
+    </div>
+#}
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

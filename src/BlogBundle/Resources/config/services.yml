@@ -1,0 +1,148 @@
+services:
+    app.enquiry_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - BlogBundle\Entity\Enquiry
+
+    app.enquiry_form:
+        class: BlogBundle\Form\EnquiryType
+        enquiries:
+            - { name: form.type, alias: enquiry }
+
+    app.pages_controller:
+        class: BlogBundle\Controller\PagesController
+        arguments:
+            - @translator
+            - @templating
+            - @session
+            - @router
+            - @app.enquiry_repository
+            - @form.factory
+            - [%my_email%]
+            - @mailer
+
+    app.posts_controller:
+        class: BlogBundle\Controller\PostsController
+        arguments:
+            - @translator
+            - @templating
+            - @session
+            - @router
+            - @app.tag_repository
+            - @app.post_repository
+            - @app.comment_repository
+            - @app.image_uploader
+            - @form.factory
+            - @security.context
+            - @doctrine.orm.entity_manager
+            - @knp_paginator
+
+    app.post_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - BlogBundle\Entity\Post
+
+
+    app.tag_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - BlogBundle\Entity\Tag
+
+    app.tags_controller:
+        class: BlogBundle\Controller\TagsController
+        arguments:
+            - @translator
+            - @templating
+            - @session
+            - @router
+            - @app.tag_repository
+            - @form.factory
+
+
+    app.comments_controller:
+        class: BlogBundle\Controller\CommentsController
+        arguments:
+            - @translator
+            - @templating
+            - @session
+            - @router
+            - @app.comment_repository
+            - @app.post_repository
+            - @form.factory
+
+    app.comment_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - BlogBundle\Entity\Comment
+
+    app.users_controller:
+        class: BlogBundle\Controller\UsersController
+        arguments:
+            - @templating
+            - @app.usermanager_service
+            - @form.factory
+            - @router
+            - @translator
+            - @session
+            - @app.user_repository
+            - @security.context
+
+    app.user_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - BlogBundle\Entity\User
+
+    app.user_form:
+        class: BlogBundle\Form\UserType
+        tags:
+            - { name: form.type, alias: user }
+
+    app.usermanager_service:
+        class: FOS\UserBundle\Doctrine\UserManager
+        arguments: [@security.encoder_factory, @fos_user.util.username_canonicalizer, @fos_user.util.email_canonicalizer, @fos_user.entity_manager, BlogBundle\Entity\User]
+
+    app.tag_form:
+        class: BlogBundle\Form\TagType
+        tags:
+            - { name: form.type, alias: tag }
+
+    app.post_form:
+        class: BlogBundle\Form\PostType
+        tags:
+            - { name: form.type, alias: post }
+
+    app.comment_form:
+        class: BlogBundle\Form\CommentType
+        tags:
+            - { name: form.type, alias: comment }
+
+    app.image_form:
+        class: BlogBundle\Form\ImageType
+        enquiries:
+            - { name: form.type, alias: image }
+
+    app.image_type_extension:
+        class: BlogBundle\Form\Extension\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, alias: file }
+
+    app.image_uploader:
+        class: BlogBundle\FileUploader
+        arguments: ['%images_directory%']
+
+    app.change_role_form:
+         class: BlogBundle\Form\ChangeRoleType
+         tags:
+            - { name: form.type, alias: changeRole }
+         arguments:
+            - @translator

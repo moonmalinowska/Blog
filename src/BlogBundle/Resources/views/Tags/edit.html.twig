@@ -1,0 +1,38 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+    {% form_theme form 'form/field.html.twig' %}
+    <h2>Edytuj tag</h2>
+    {#<div>{{ form_errors(form) }}</div>
+    {{ form(form, {'method': 'POST'}) }}
+    #}
+
+    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+
+            <div class="form-group">
+                <label for="approved" class="col-lg-12 control-label"></label>
+                <label class="col-lg-2 control-label">
+                    {{ form_label(form.name) }}
+                </label>
+                <div class="col-lg-6">
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success', 'type': 'radio'}}) }}
+                    <a class="btn btn-info" role="button" href="{{ url('tags') }}" title="">
+                        Wróc
+                    </a>
+                </div>
+            </div>
+
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
+
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+    {% for type, messages in app.session.flashbag.all %}
+        <div class="alert alert-{{ type }}" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <h2>Usunąć post "{{ post.title }}"?</h2>
+    <p><span class="text-primary">Treść posta:</span> {{ post.content }}</p>
+    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary', 'type': 'submit'}}) }}
+                    <a class="btn btn-info" role="button" href="{{ url('posts') }}" title="">
+                        Wróc
+                    </a>
+
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
+    <p>
+
+    </p>
+{% endblock %}
+

@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>posts.list.title</source>
+                <target>Lista postów</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>registration.submit</source>
+                <target>Zarejestruj</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>form.comment.approved.no</source>
+                <target>Nie</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>form.comment.approved.yes</source>
+                <target>Tak</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>form.post.content</source>
+                <target>Treść posta</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>comments.messages.success.add</source>
+                <target>Twój komentarz wyświetli się po zatwierdzeniu przez moderatora.</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>form.comment.author</source>
+                <target>Autor:</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>form.comment.content</source>
+                <target>Komentarz:</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>posts.messages.posts_not_found</source>
+                <target>Postów nie odnaleziono.</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>posts.messages.post_not_found</source>
+                <target>Nie odnaleziono posta.</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>posts.messages.post_not_found</source>
+                <target>Nie odnaleziono posta.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>posts.messages.success.add</source>
+                <target>Post został dodany.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>posts.messages.success.edit</source>
+                <target>Edytowano posta</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>posts.messages.success.delete</source>
+                <target>Post został usunięty.</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>comments.messages.comments_not_found</source>
+                <target>Brak komentarzy.</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>comments.messages.tag_not_found</source>
+                <target>Nie odnaleziono.</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>comments.messages.success.edit</source>
+                <target>Komentarz zmoderowany.</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>comments.messages.comment_not_found</source>
+                <target>Nie odnaleziono komentarza.</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>comments.messages.success.delete</source>
+                <target>Komentarz został usunięty.</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>tags.messages.tags_not_found</source>
+                <target>Tagów nie odnaleziono.</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>tags.messages.success.add</source>
+                <target>Tag dodano.</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>tags.messages.tag_not_found</source>
+                <target>Tagu nie odnaleziono.</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>tags.messages.success.edit</source>
+                <target>Tagów został edytowany.</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>tags.messages.success.delete</source>
+                <target>Tag usunięto.</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>users.messages.users_not_found</source>
+                <target>Nie odnaleziono użytkowników.</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>users.messages.success.add</source>
+                <target>Dodano użytkownika.</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>users.messages.success.edit</source>
+                <target>Edytowano użytkowika.</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>users.messages.success.delete</source>
+                <target>Użytkownik został usunięty.</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>admin.user_role.not_found</source>
+                <target>Nie odnaleziono użytkownika.</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>user.messages.cannot_change_role_currently_logged_id</source>
+                <target>Użytkownik zalogowany. Nie można edytować.</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>admin.user_role.change.success</source>
+                <target>Rola użytkownika została zmieniona.</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>profile.flash.updated</source>
+                <target>Profil edytowano!</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>change_password.flash.success </source>
+                <target>Hasło zostało zmienione!</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>registration.flash.user_created</source>
+                <target>Użytkownik został stworzony!</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

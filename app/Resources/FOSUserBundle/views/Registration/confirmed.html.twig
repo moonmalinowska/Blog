@@ -1,0 +1,11 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block body %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        <a class="btn btn-info" role="button" href="{{ url('posts') }}" title="">
+            Rozpocznij przygodę z blogiem
+        </a>
+    {% endif %}
+{% endblock body %}

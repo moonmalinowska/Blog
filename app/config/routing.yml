@@ -1,0 +1,70 @@
+app:
+    resource: "@BlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+BlogBundle_homepage:
+    pattern:  /
+    defaults: { _controller: BlogBundle:Posts:indexAction }
+    requirements:
+        _method:  GET
+
+BlogBundle_about:
+    pattern:  /about
+    defaults: { _controller: BlogBundle:Pages:about }
+    requirements:
+        _method:  GET
+
+BlogBundle_contact:
+    pattern:  /contact
+    defaults: { _controller: BlogBundle:Pages:contact }
+    requirements:
+        _method:  GET|POST
+        _locale: '%app.locales%'
+
+BlogBundle_post_view:
+    path:     /posts/view/{id}
+    defaults: { _controller: BlogBundle:Posts:view }
+
+BlogBundle_post_add:
+    path:     /posts/add
+    defaults: { _controller: BlogBundle:Posts:add }
+
+tags_view:
+    path:     /tags/view/{id}
+    defaults: { _controller: BlogBundle:Tags:view }
+
+posts_view:
+    path:     /posts/view/{id}
+    defaults: { _controller: BlogBundle:Posts:view }
+
+BlogBundle_posts:
+    pattern:  /posts
+    defaults: { _controller: BlogBundle:Posts:index }
+    requirements:
+        _method:  GET
+
+BlogBundle_users:
+    pattern:  /users/index
+    defaults: { _controller: BlogBundle:Users:index }
+    requirements:
+        _method:  GET
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

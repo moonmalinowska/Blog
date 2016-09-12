@@ -1,7 +1,7 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block body %}
-    <h2>Usuń użytkownika</h2>
+    {#<h2>Usuń użytkownika</h2>
     <div>{{ form_errors(form) }}</div>
     {{ form(form, {'method': 'POST'}) }}
     <p>
@@ -9,6 +9,29 @@
             Back
         </a>
 
-    </p>
+    </p>#}
+
+    <h2>Usunąć użytkownika {{ user.username }}?</h2>
+
+    <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-1">
+<span>
+        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary', 'type': 'submit'}}) }}
+
+    <a class="btn btn-info" role="button" href="{{ url('users-index') }}" title="">
+            Wróc
+        </a>
+
+</span>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </fieldset>
+    </form>
 {% endblock %}
 

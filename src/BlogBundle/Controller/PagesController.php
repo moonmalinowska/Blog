@@ -213,13 +213,20 @@ class PagesController extends Controller
                 'BlogBundle:Pages:contactEmail.txt.twig',
                 array('enquiry' => $enquiry)
             ));
-            $this->mailer->send($message);
-                
 
-            $this->session->getFlashBag()->add(
-                'blogger-notice',
-                'Wiadomość została wysłana. Dziękuję!'
-            );
+            try {
+                $this->mailer->send($message);
+                $this->session->getFlashBag()->add(
+                    'success',
+                    $this->translator->trans('email.messages.success')
+                );
+            } catch (\Swift_TransportException $Ste) {
+                $this->session->getFlashBag()->add(
+                    'warning',
+                    $this->translator->trans('email.messages.fail')
+                );
+            }
+            
 
             return new RedirectResponse(
                 $this->router->generate('BlogBundle_contact')

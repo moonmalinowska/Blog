@@ -247,6 +247,45 @@ class UsersController extends Controller
      */
     public function deleteAction(Request $request, User $user = null)
     {
+        if (!$user) {
+            $this->session->getFlashBag()->set(
+                'warning',
+                $this->translator->trans('users.messages.user_not_found')
+            );
+            return new RedirectResponse(
+                $this->router->generate('users-index')
+            );
+        }
+
+        $userForm = $this->formFactory->create(
+            new UserType(),
+            $user,
+            array(
+                'validation_groups' => 'user-delete'
+            )
+        );
+
+        $userForm->handleRequest($request);
+
+        if ($userForm->isValid()) {
+            $user = $userForm->getData();
+            $this->userModel->delete($user);
+            $this->session->getFlashBag()->set(
+                'success',
+                $this->translator->trans('users.messages.success.delete')
+            );
+            return new RedirectResponse(
+                $this->router->generate('users-index')
+            );
+        }
+
+        return $this->templating->renderResponse(
+            'BlogBundle:Users:delete.html.twig',
+            array('user'=>$user,
+                'form' => $userForm->createView())
+        );
+        
+        /**
         $this->userModel->delete($user);
         $this->session->getFlashBag()->set(
             'success',
@@ -255,6 +294,7 @@ class UsersController extends Controller
         return new RedirectResponse(
             $this->router->generate('users-index')
         );
+         * */
     }
 
     /**

@@ -186,6 +186,7 @@ class PostsController extends Controller
      * @Route("/posts/{page}", defaults={"page": 1}, requirements={"page": "\d+" }, name="posts")
      * @Route("/posts/{page}/", defaults={"page": 1}, requirements={"page": "\d+" }, name="posts")
      * @Route("/posts")
+     * @Route("/posts/")
      * @Route("/")
      *
      * @param Request $request
@@ -364,8 +365,8 @@ class PostsController extends Controller
      * @Route("/posts/edit/{id}/")
      * @ParamConverter("post", class="BlogBundle:Post")
      *
-     * @param Post|null $post
      * @param Request $request Request
+     * @param Post|null $post
      * @return RedirectResponse|Response
      */
     public function editAction(Request $request, Post $post = null)
@@ -419,8 +420,8 @@ class PostsController extends Controller
      * @Route("/posts/delete/{id}/")
      * @ParamConverter("post", class="BlogBundle:Post")
      *
-     * @param Post|null $post
      * @param Request $request Request
+     * @param Post|null $post
      * @return RedirectResponse|Response
      */
     public function deleteAction(Request $request, Post $post = null)

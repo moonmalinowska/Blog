@@ -149,8 +149,8 @@ class CommentsController extends Controller
      * @Route("/comments/{id}/add/")
      * @ParamConverter("post", class="BlogBundle:Post")
      *
+     * @param Request $request
      * @param Post|null $post
-     * @param Request $request Request
      * @return RedirectResponse|Response
      */
     public function addAction(Request $request, Post $post = null)
@@ -198,8 +198,8 @@ class CommentsController extends Controller
      * @Route("/comments/edit/{id}/")
      * @ParamConverter("comment", class="BlogBundle:Comment")
      *
-     * @param Comment|null $comment
      * @param Request $request
+     * @param Comment|null $comment
      * @return RedirectResponse|Response
      */
     public function editAction(Request $request, Comment $comment = null)
@@ -252,8 +252,8 @@ class CommentsController extends Controller
      * @Route("/comments/delete/{id}/")
      * @ParamConverter("comment", class="BlogBundle:Comment")
      *
-     * @param Comment|null $comment
      * @param Request $request Request
+     * @param Comment|null $comment
      * @return RedirectResponse|Response
      */
     public function deleteAction(Request $request, Comment $comment = null)

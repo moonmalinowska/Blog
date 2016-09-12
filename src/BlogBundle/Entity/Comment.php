@@ -53,10 +53,10 @@ class Comment
      *     nullable=false
      * )
      *
-     * @var string $author Autor
-     *
      * @Assert\NotBlank(groups={"comment-default"}, message = "Pole nie może pozostać puste.")
      * @Assert\Length(min=2, max=128, groups={"comment-default"})
+     *
+     * @var string $author Author
      */
     protected $author;
 

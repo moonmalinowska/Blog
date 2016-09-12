@@ -138,7 +138,18 @@
                 <source>registration.flash.user_created</source>
                 <target>Użytkownik został stworzony!</target>
             </trans-unit>
-
+            <trans-unit id="35">
+                <source>users.messages.user_not_found</source>
+                <target>Nie odnaleziono użytkownika.</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>email.messages.success</source>
+                <target>Dziękuję! Wiadomość została wysłana.</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>email.messages.fail</source>
+                <target>Wystąpił błąd. Wiadomość nie została wysłana. Spróbuj ponownie później.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

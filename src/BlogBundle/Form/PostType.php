@@ -95,10 +95,10 @@ class PostType extends AbstractType
                 'validation_groups' => 'post-default',
             )
         );
-        $resolver->setRequired(array('post_model'));
+        $resolver->setRequired(array('tag_model'));
         $resolver->setAllowedTypes(
             array(
-                'post_model' => 'Doctrine\Common\Persistence\ObjectRepository'
+                'tag_model' => 'Doctrine\Common\Persistence\ObjectRepository'
             )
         );
 

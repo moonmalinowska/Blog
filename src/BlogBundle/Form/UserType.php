@@ -33,55 +33,60 @@ class UserType extends AbstractType
             'hidden',
             array('mapped' => false)
         );
-        $builder->add(
-            'username',
-            'text',
-            array(
-                'label' => 'Nazwa użytkownika',
-                'required' => true,
-                'max_length' => 128,
-            )
-        );
-        if ($options['edit'] === false) {
+        if (isset($options['validation_groups'])
+            && count($options['validation_groups'])
+            && !in_array('user-delete', $options['validation_groups'])
+        ) {
             $builder->add(
-                'plainPassword',
-                'password',
+                'username',
+                'text',
                 array(
-                    'label' => 'Nowe hasło',
+                    'label' => 'Nazwa użytkownika',
+                    'required' => true,
                     'max_length' => 128,
-                    'required' => true
                 )
             );
-        } else {
+            if ($options['edit'] === false) {
+                $builder->add(
+                    'plainPassword',
+                    'password',
+                    array(
+                        'label' => 'Nowe hasło',
+                        'max_length' => 128,
+                        'required' => true
+                    )
+                );
+            } else {
+                $builder->add(
+                    'plainPassword',
+                    'password',
+                    array(
+                        'label' => 'Nowe hasło',
+                        'max_length' => 128,
+                        'required' => false
+                    )
+                );
+            }
             $builder->add(
-                'plainPassword',
-                'password',
+                'email',
+                'text',
                 array(
-                    'label' => 'Nowe hasło',
+                    'label' => 'Email',
+                    'required' => true,
+                    'max_length' => 128
+                )
+            );
+            $builder->add(
+                'enabled',
+                'checkbox',
+                array(
+                    'label' => 'Aktywny',
                     'max_length' => 128,
-                    'required' => false
+                    'required' => false,
+                    'value' => 1
                 )
             );
         }
-        $builder->add(
-            'email',
-            'text',
-            array(
-                'label' => 'Email',
-                'required' => true,
-                'max_length' => 128
-            )
-        );
-        $builder->add(
-            'enabled',
-            'checkbox',
-            array(
-                'label' => 'Aktywny',
-                'max_length' => 128,
-                'required' => false,
-                'value' =>1
-            )
-        );
         $builder->add(
             'save',
             'submit',

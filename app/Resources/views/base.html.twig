@@ -30,7 +30,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{ path('BlogBundle_homepage') }}">Home</a></li>
                                 <li><a href="{{ path('BlogBundle_about') }}">O nas</a></li>
-                                {% if is_granted('ROLE') %}
+                                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li><a href="{{ path('BlogBundle_contact') }}">Kontakt</a></li>
                                 {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}

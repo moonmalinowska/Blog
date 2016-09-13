@@ -1,8 +1,6 @@
-<!-- app/Resources/views/base.html.twig -->
 <!DOCTYPE html>
-<html xmlns:hx="http://purl.org/NET/hinclude">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8"/>
+    <meta charset="utf-8"/>
     <title>{% block title %}Blog{% endblock %}</title>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,7 +18,7 @@
 </head>
 <body>
 
-<section id="wrapper">
+<div id="wrapper">
     <header id="header">
         <div class="top">
             {% block navigation %}
@@ -63,11 +61,11 @@
             {% endblock %}
         </div>
 
-        <hgroup>
+        <div>
             <h2>{% block blog_title %}<a href="{{ path('BlogBundle_homepage') }}">Blog</a>{% endblock %}</h2>
             <h3>{% block blog_tagline %}<a href="{{ path('BlogBundle_homepage') }}">Lorem ipsum dolor sit
                     amet</a>{% endblock %}</h3>
-        </hgroup>
+        </div>
     </header>
 
     <section class="main-col">
@@ -82,7 +80,7 @@
             © Copyright by Monika Malinowska
         {% endblock %}
     </div>
-</section>
+</div>
 
 {% block javascripts %}{% endblock %}
 </body>
